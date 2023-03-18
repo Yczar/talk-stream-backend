@@ -7,7 +7,9 @@ environment:
   sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
+  broadcast_bloc: ^0.1.0-dev.2
   dart_frog: ^0.3.0
+  dart_frog_web_socket: ^0.1.0-dev.3
 
 dev_dependencies:
   mocktail: ^0.3.0

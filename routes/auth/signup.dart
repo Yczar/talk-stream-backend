@@ -65,21 +65,26 @@ Future<Response> _post(RequestContext context) async {
     }
     final userJson = await context.request.json();
     final user = User.fromJson(userJson as Map<String, dynamic>);
-    final signup = (await dataSource.signUp(user));
+    final signup = await dataSource.signUp(user);
     return Response.json(
-      statusCode: HttpStatus.ok,
       body: signup..toJson(),
     );
-  } on AuthException catch (e, s) {
+  } on AuthException catch (e) {
     // print(e);
     // print(s);
-    return Response.json(statusCode: HttpStatus.badRequest, body: {
-      'message': e.toString(),
-    });
-  } catch (e, s) {
+    return Response.json(
+      statusCode: HttpStatus.badRequest,
+      body: {
+        'message': e.toString(),
+      },
+    );
+  } catch (e) {
     // print(s);
-    return Response.json(statusCode: HttpStatus.badRequest, body: {
-      'message': e.toString(),
-    });
+    return Response.json(
+      statusCode: HttpStatus.badRequest,
+      body: {
+        'message': e.toString(),
+      },
+    );
   }
 }

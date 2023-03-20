@@ -11,3 +11,6 @@ build/
 
 # Test related files
 coverage/
+chat.json
+messages.json
+users.json

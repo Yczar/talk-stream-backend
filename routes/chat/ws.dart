@@ -2,7 +2,6 @@ import 'package:chat_data_source/chat_data_source.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:dart_frog_web_socket/dart_frog_web_socket.dart';
 import 'package:talk_stream_backend/chat/cubit/chat_cubit.dart';
-import 'package:talk_stream_backend/chat/models/chat_socket_type.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   final dataSource = context.read<ChatDatasource>();
@@ -12,7 +11,7 @@ Future<Response> onRequest(RequestContext context) async {
 
       channel.stream.listen(
         (event) {
-          cubit.sendMessage(event, dataSource);
+          cubit.sendMessage(event as String, dataSource);
         },
         onDone: () => cubit.unsubscribe(channel),
       );
@@ -22,13 +21,13 @@ Future<Response> onRequest(RequestContext context) async {
   return handler(context);
 }
 
-extension on String {
-  ChatSocketType? toMessage() {
-    for (final message in ChatSocketType.values) {
-      if (this == message.value) {
-        return message;
-      }
-    }
-    return null;
-  }
-}
+// extension on String {
+//   ChatSocketType? toMessage() {
+//     for (final message in ChatSocketType.values) {
+//       if (this == message.value) {
+//         return message;
+//       }
+//     }
+//     return null;
+//   }
+// }

@@ -58,16 +58,4 @@ class User {
 
   @override
   String toString() => 'User(email: $email, password: $password, name: $name)';
-
-  @override
-  bool operator ==(covariant User other) {
-    if (identical(this, other)) return true;
-
-    return other.email == email &&
-        other.password == password &&
-        other.name == name;
-  }
-
-  @override
-  int get hashCode => email.hashCode ^ password.hashCode ^ name.hashCode;
 }

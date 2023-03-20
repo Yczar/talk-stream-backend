@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs
 import 'dart:convert';
 
-import 'package:collection/collection.dart';
-
 class ChatMessage {
   ChatMessage({
     required this.sender,
@@ -64,27 +62,7 @@ class ChatMessage {
 
   @override
   String toString() {
-    return 'ChatMessage(sender: $sender, message: $message, timestamp: $timestamp, roomId: $roomId, members: $members)';
-  }
-
-  @override
-  bool operator ==(covariant ChatMessage other) {
-    if (identical(this, other)) return true;
-    final listEquals = const DeepCollectionEquality().equals;
-
-    return other.sender == sender &&
-        other.message == message &&
-        other.timestamp == timestamp &&
-        other.roomId == roomId &&
-        listEquals(other.members, members);
-  }
-
-  @override
-  int get hashCode {
-    return sender.hashCode ^
-        message.hashCode ^
-        timestamp.hashCode ^
-        roomId.hashCode ^
-        members.hashCode;
+    return 'ChatMessage(sender: $sender, message: $message, timestamp: '
+        '$timestamp, roomId: $roomId, members: $members)';
   }
 }

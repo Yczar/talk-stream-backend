@@ -18,7 +18,8 @@ import 'package:dart_frog/dart_frog.dart';
 /// it throws a [SignInException] with an 'invalid data' message.
 ///
 /// If the request method is POST and the user authentication fails, it
-/// catches an [AuthException] and returns a JSON response with the error message.
+/// catches an [AuthException] and returns a JSON response with the error
+/// message.
 ///
 /// If any other error occurs during the execution of the function, it
 /// catches the error and returns a JSON response with the error message.
@@ -65,24 +66,27 @@ Future<Response> _post(RequestContext context) async {
     if (requestBody.isEmpty) {
       throw SignInException('invalid data');
     }
-    print(requestBody);
     final userJson = await context.request.json();
     final user = User.fromJson(
       userJson as Map<String, dynamic>,
     );
 
     return Response.json(
-      statusCode: HttpStatus.ok,
       body: (await dataSource.signIn(user)).toJson(),
     );
   } on AuthException catch (e) {
-    return Response.json(statusCode: HttpStatus.badRequest, body: {
-      'message': e.toString(),
-    });
-  } catch (e, s) {
-    print(s);
-    return Response.json(statusCode: HttpStatus.badRequest, body: {
-      'message': e.toString(),
-    });
+    return Response.json(
+      statusCode: HttpStatus.badRequest,
+      body: {
+        'message': e.toString(),
+      },
+    );
+  } catch (e) {
+    return Response.json(
+      statusCode: HttpStatus.badRequest,
+      body: {
+        'message': e.toString(),
+      },
+    );
   }
 }

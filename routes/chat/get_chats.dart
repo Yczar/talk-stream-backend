@@ -40,14 +40,16 @@ Future<Response> _getChats(
     }
     final chats = await dataSource.getChats(userId);
     return Response.json(
-      statusCode: HttpStatus.ok,
       body: chats,
     );
   } catch (e) {
-    // Log the error stack trace and return a JSON response with an error message.
-    // print(s);
-    return Response.json(statusCode: HttpStatus.badRequest, body: {
-      'message': e.toString(),
-    });
+    // Log the error stack trace and return a JSON response with an error
+    // message.
+    return Response.json(
+      statusCode: HttpStatus.badRequest,
+      body: {
+        'message': e.toString(),
+      },
+    );
   }
 }

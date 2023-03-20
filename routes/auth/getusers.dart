@@ -44,17 +44,19 @@ Future<Response> _getUsers(RequestContext context) async {
       throw GetUsersException('please pass in your user id');
     }
     final dataSource = context.read<AuthDataSource>();
-    final users = await dataSource.getUsers(userId.toString());
+    final users = await dataSource.getUsers(userId);
 
     return Response.json(
-      statusCode: HttpStatus.ok,
       body: users,
     );
   } catch (e) {
-    // Log the error stack trace and return a JSON response with an error message.
-    // print(s);
-    return Response.json(statusCode: HttpStatus.badRequest, body: {
-      'message': e.toString(),
-    });
+    // Log the error stack trace and return a JSON response with an error
+    // message.
+    return Response.json(
+      statusCode: HttpStatus.badRequest,
+      body: {
+        'message': e.toString(),
+      },
+    );
   }
 }

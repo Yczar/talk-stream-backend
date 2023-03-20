@@ -46,7 +46,7 @@ class UserService {
       final json = (jsonDecode(contents) as List).map((content) {
         final decodedValue =
             jsonDecode(content as String) as Map<String, dynamic>;
-        print(decodedValue);
+
         return decodedValue;
       }).toList();
 

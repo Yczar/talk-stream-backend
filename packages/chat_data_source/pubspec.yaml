@@ -7,6 +7,14 @@ environment:
   sdk: ">=2.19.0 <3.0.0"
 
 dev_dependencies:
+  build_runner: ^2.3.3
   mocktail: ^0.3.0
   test: ^1.19.2
   very_good_analysis: ^4.0.0
+dependencies:
+  equatable: ^2.0.5
+  auth_data_source:
+    path: ../auth_data_source
+  json_serializable: ^6.6.1
+  json_annotation: ^4.8.0
+  meta: ^1.9.0

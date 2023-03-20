@@ -10,6 +10,10 @@ dependencies:
   broadcast_bloc: ^0.1.0-dev.2
   dart_frog: ^0.3.0
   dart_frog_web_socket: ^0.1.0-dev.3
+  auth_data_source:
+    path: packages/auth_data_source
+  chat_data_source:
+    path: packages/chat_data_source
 
 dev_dependencies:
   mocktail: ^0.3.0
